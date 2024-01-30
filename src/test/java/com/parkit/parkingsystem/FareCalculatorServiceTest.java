@@ -8,6 +8,8 @@ import com.parkit.parkingsystem.service.FareCalculatorService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -124,10 +126,11 @@ public class FareCalculatorServiceTest {
         assertEquals( (24 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
     }
 
-    @Test
-    public void calculateFareCarWithLessThan30minutesParkingTime(){
+    @ParameterizedTest(name="L utilisateur reste {0} minutes")
+    @ValueSource(doubles={0, 15, 29.59})
+    public void calculateFareCarWithLessThan30minutesParkingTime(double minutes){
         Date inTime = new Date();
-        inTime.setTime( System.currentTimeMillis() - (  30 * 60 * 1000)+1000 );
+        inTime.setTime( System.currentTimeMillis() - (long)( minutes * 60 * 1000));
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
 
@@ -138,10 +141,11 @@ public class FareCalculatorServiceTest {
         assertEquals( 0 , ticket.getPrice());
     }
 
-    @Test
-    public void calculateFareBikeWithLessThan30minutesParkingTime(){
+    @ParameterizedTest(name="L utilisateur reste {0} minutes")
+    @ValueSource(doubles={0, 0.1, 5, 29.59})
+    public void calculateFareBikeWithLessThan30minutesParkingTime(double minutes){
         Date inTime = new Date();
-        inTime.setTime( System.currentTimeMillis() - (  60*1000 ));
+        inTime.setTime( System.currentTimeMillis() - (long)( minutes*60*1000));
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
 
