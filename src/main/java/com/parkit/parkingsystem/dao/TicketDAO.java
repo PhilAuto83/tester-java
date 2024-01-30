@@ -8,10 +8,8 @@ import com.parkit.parkingsystem.model.Ticket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.util.OptionalInt;
 
 public class TicketDAO {
 
@@ -65,8 +63,9 @@ public class TicketDAO {
             logger.error("Error fetching next available slot",ex);
         }finally {
             dataBaseConfig.closeConnection(con);
-            return ticket;
+
         }
+        return ticket;
     }
 
     public boolean updateTicket(Ticket ticket) {
@@ -85,5 +84,28 @@ public class TicketDAO {
             dataBaseConfig.closeConnection(con);
         }
         return false;
+    }
+
+    public int getNbTicket(String vehicleRegNumber){
+        Connection con = null;
+        int ticketNumberPerVehicule = 0 ;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.GET_TICKET_PER_VEHICLE_REG_NUMBER);
+            ps.setString(1, vehicleRegNumber);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                ticketNumberPerVehicule += rs.getInt(1);
+            }
+            dataBaseConfig.closeResultSet(rs);
+            dataBaseConfig.closePreparedStatement(ps);
+
+        }catch (Exception ex){
+                logger.error("Error getting count of ticket for the vehicle number",ex);
+        }finally{
+
+            dataBaseConfig.closeConnection(con);
+        }
+        return ticketNumberPerVehicule;
     }
 }
