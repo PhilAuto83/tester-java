@@ -48,7 +48,6 @@ public class ParkingServiceTest {
     private void setUpPerTest() {
         try {
             System.setOut(new PrintStream(outputStreamCaptor));
-            when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
             parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
             ticket = new Ticket();
             ticket.setInTime(new Date(System.currentTimeMillis() - (60*60*1000)));
@@ -62,7 +61,8 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void processExitingVehicleTest(){
+    public void processExitingVehicleTest() throws Exception {
+        when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
         when(ticketDAO.getNbTicket(any(String.class))).thenReturn(3);
         when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
         when(ticketDAO.updateTicket(any(Ticket.class))).thenReturn(true);
@@ -76,8 +76,8 @@ public class ParkingServiceTest {
 
     @Test
     public void processIncomingVehicleTest() throws Exception {
+        when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("UVWXYZ");
         when(inputReaderUtil.readSelection()).thenReturn(1);
-        when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("AABBCC");
         when(parkingSpotDAO.getNextAvailableSlot(any(ParkingType.class))).thenReturn(1);
         when(ticketDAO.getNbTicket(any(String.class))).thenReturn(0);
         when(ticketDAO.saveTicket(any(Ticket.class))).thenReturn(true);
@@ -90,19 +90,34 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void processExitingVehicleTestUnableUpdate(){
-        when(ticketDAO.getNbTicket(any(String.class))).thenReturn(3);
+    public void processExitingVehicleTestUnableUpdate() throws Exception {
+        when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
+        when(ticketDAO.getNbTicket(any(String.class))).thenReturn(2);
         when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
         when(ticketDAO.updateTicket(any(Ticket.class))).thenReturn(false);
         parkingService.processExitingVehicle();
         verify(parkingSpotDAO, Mockito.times(0)).updateParking(any(ParkingSpot.class));
-        verify(ticketDAO, times(1)).getNbTicket(any(String.class));
+        verify(ticketDAO, times(1)).getNbTicket(anyString());
+        verify(ticketDAO, times(1)).getTicket(anyString());
         String errorMessage = outputStreamCaptor.toString().substring(outputStreamCaptor.toString().indexOf("Un"));
         assertEquals("Unable to update ticket information. Error occurred", errorMessage.trim());
-
-
     }
 
+    @Test
+    public void testGetNextParkingNumberIfAvailable(){
+        when(inputReaderUtil.readSelection()).thenReturn(1);
+        when(parkingSpotDAO.getNextAvailableSlot(any(ParkingType.class))).thenReturn(1);
+        assertEquals(1, parkingService.getNextParkingNumberIfAvailable().getId());
+        verify(inputReaderUtil, times(1)).readSelection();
+        verify(parkingSpotDAO, times(1)).getNextAvailableSlot(any(ParkingType.class));
+    }
 
-
+    @Test
+    public void testGetNextParkingNumberIfAvailableParkingNumberNotFound(){
+        when(inputReaderUtil.readSelection()).thenReturn(1);
+        when(parkingSpotDAO.getNextAvailableSlot(any(ParkingType.class))).thenReturn(0);
+        assertNull(parkingService.getNextParkingNumberIfAvailable());
+        verify(inputReaderUtil, times(1)).readSelection();
+        verify(parkingSpotDAO, times(1)).getNextAvailableSlot(any(ParkingType.class));
+    }
 }
