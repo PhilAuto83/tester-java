@@ -110,8 +110,9 @@ public class ParkingService {
             ticket.setOutTime(outTime);
             if(isUsualUser){
                 fareCalculatorService.calculateFare(ticket, true);
+            }else{
+                fareCalculatorService.calculateFare(ticket);
             }
-            fareCalculatorService.calculateFare(ticket);
             if(ticketDAO.updateTicket(ticket)) {
                 ParkingSpot parkingSpot = ticket.getParkingSpot();
                 parkingSpot.setAvailable(true);

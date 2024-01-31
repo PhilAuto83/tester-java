@@ -12,10 +12,7 @@ public class FareCalculatorService {
         } else if (ticket.getOutTime().getTime() - ticket.getInTime().getTime() < (30 * 60 * 1000)) {
             ticket.setPrice(0);
         } else {
-            double discountRate = 1;
-            if (discount) {
-                discountRate = 0.95;
-            }
+            double discountRate = discount?0.95:1.0;
             long inHour = ticket.getInTime().getTime();
             long outHour = ticket.getOutTime().getTime();
 
