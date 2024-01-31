@@ -120,4 +120,11 @@ public class ParkingServiceTest {
         verify(inputReaderUtil, times(1)).readSelection();
         verify(parkingSpotDAO, times(1)).getNextAvailableSlot(any(ParkingType.class));
     }
+
+    @Test
+    public void testGetNextParkingNumberIfAvailableParkingNumberWrongArgument(){
+        when(inputReaderUtil.readSelection()).thenReturn(3);
+        assertNull(parkingService.getNextParkingNumberIfAvailable());
+        verify(inputReaderUtil, times(1)).readSelection();
+    }
 }
