@@ -8,6 +8,8 @@ import com.parkit.parkingsystem.model.Ticket;
 import com.parkit.parkingsystem.service.FareCalculatorService;
 import com.parkit.parkingsystem.service.ParkingService;
 import com.parkit.parkingsystem.util.InputReaderUtil;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Console;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Date;
 
@@ -28,8 +31,8 @@ public class ParkingServiceTest {
 
     private static ParkingService parkingService;
 
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private static final PrintStream standardOut = System.out;
+    private static final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private Ticket ticket;
 
@@ -59,6 +62,11 @@ public class ParkingServiceTest {
             throw  new RuntimeException("Failed to set up test mock objects");
         }
     }
+    @AfterAll
+    public static void getBackToOriginalStandardOut() throws IOException {
+        System.setOut(standardOut);
+        outputStreamCaptor.close();
+    }
 
     @Test
     public void processExitingVehicleTest() throws Exception {
@@ -87,6 +95,7 @@ public class ParkingServiceTest {
         verify(parkingSpotDAO, times(1)).updateParking(parkingSpot);
         assertTrue(outputStreamCaptor.toString().contains("Generated Ticket and saved in DB"));
         assertTrue(outputStreamCaptor.toString().contains("Please park your vehicle in spot number:1"));
+
     }
 
     @Test
@@ -101,6 +110,7 @@ public class ParkingServiceTest {
         verify(ticketDAO, times(1)).getTicket(anyString());
         String errorMessage = outputStreamCaptor.toString().substring(outputStreamCaptor.toString().indexOf("Un"));
         assertEquals("Unable to update ticket information. Error occurred", errorMessage.trim());
+
     }
 
     @Test
