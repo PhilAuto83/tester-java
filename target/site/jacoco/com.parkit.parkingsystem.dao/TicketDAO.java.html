@@ -69,19 +69,19 @@ import java.util.OptionalInt;
     }
 
     public boolean updateTicket(Ticket ticket) {
-<span class="nc" id="L72">        Connection con = null;</span>
+<span class="fc" id="L72">        Connection con = null;</span>
         try {
-<span class="nc" id="L74">            con = dataBaseConfig.getConnection();</span>
-<span class="nc" id="L75">            PreparedStatement ps = con.prepareStatement(DBConstants.UPDATE_TICKET);</span>
-<span class="nc" id="L76">            ps.setDouble(1, ticket.getPrice());</span>
-<span class="nc" id="L77">            ps.setTimestamp(2, new Timestamp(ticket.getOutTime().getTime()));</span>
-<span class="nc" id="L78">            ps.setInt(3,ticket.getId());</span>
-<span class="nc" id="L79">            ps.execute();</span>
-<span class="nc" id="L80">            return true;</span>
+<span class="fc" id="L74">            con = dataBaseConfig.getConnection();</span>
+<span class="fc" id="L75">            PreparedStatement ps = con.prepareStatement(DBConstants.UPDATE_TICKET);</span>
+<span class="fc" id="L76">            ps.setDouble(1, ticket.getPrice());</span>
+<span class="fc" id="L77">            ps.setTimestamp(2, new Timestamp(ticket.getOutTime().getTime()));</span>
+<span class="fc" id="L78">            ps.setInt(3,ticket.getId());</span>
+<span class="fc" id="L79">            ps.execute();</span>
+<span class="fc" id="L80">            return true;</span>
 <span class="nc" id="L81">        }catch (Exception ex){</span>
 <span class="nc" id="L82">            logger.error(&quot;Error saving ticket info&quot;,ex);</span>
         }finally {
-<span class="nc" id="L84">            dataBaseConfig.closeConnection(con);</span>
+<span class="fc" id="L84">            dataBaseConfig.closeConnection(con);</span>
         }
 <span class="nc" id="L86">        return false;</span>
     }
