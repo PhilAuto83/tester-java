@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<module version="4" relativePaths="false" type="JAVA_MODULE"> 
+  <component name="NewModuleRootManager"> 
+    <exclude-output/>  
+    <orderEntry type="inheritedJdk"/>  
+    <!-- output url="file://$$MODULE_DIR$$/${maven.build.dest}"/ -->  
+    <!-- output-test url="file://$$MODULE_DIR$$/${maven.test.dest}"/ -->  
+    <content url="file://$MODULE_DIR$"> 
+      <!-- sourceFolder url="file://$$MODULE_DIR$$/${pom.build.sourceDirectory}" isTestSource="false"/ -->  
+      <!-- sourceFolder url="file://$$MODULE_DIR$$/${pom.build.testSourceDirectory}" isTestSource="true"/ -->  
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false"/>
+      <excludeFolder url="file://$MODULE_DIR$/target"/>
+    </content>  
+    <orderEntry type="sourceFolder" forTests="false"/>  
+    <!-- Next include each dependency:
+      <orderEntry type="module" module-name="${dep.artifactId}"/>
+      <orderEntry type="module-library">
+        <library name="${dep.artifactId}">
+          <CLASSES>
+            <root url="jar://${lib.path}!/"/>
+          </CLASSES>
+          <JAVADOC/>
+          <SOURCES/>
+        </library>
+      </orderEntry>
+     -->  
+    <output url="file://$MODULE_DIR$/target/classes"/>  
+    <output-test url="file://$MODULE_DIR$/target/test-classes"/>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/logging/log4j/log4j-api/2.12.1/log4j-api-2.12.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/logging/log4j/log4j-core/2.12.1/log4j-core-2.12.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/junit/jupiter/junit-jupiter-api/5.10.1/junit-jupiter-api-5.10.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/junit/platform/junit-platform-commons/1.10.1/junit-platform-commons-1.10.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/junit/jupiter/junit-jupiter-engine/5.10.1/junit-jupiter-engine-5.10.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/junit/platform/junit-platform-engine/1.10.1/junit-platform-engine-1.10.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/mockito/mockito-junit-jupiter/5.10.0/mockito-junit-jupiter-5.10.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/mockito/mockito-core/5.10.0/mockito-core-5.10.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/net/bytebuddy/byte-buddy/1.14.11/byte-buddy-1.14.11.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/net/bytebuddy/byte-buddy-agent/1.14.11/byte-buddy-agent-1.14.11.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/objenesis/objenesis/3.3/objenesis-3.3.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/jacoco/jacoco-maven-plugin/0.8.11/jacoco-maven-plugin-0.8.11.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/codehaus/plexus/plexus-utils/3.0.24/plexus-utils-3.0.24.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/shared/file-management/3.1.0/file-management-3.1.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/reporting/maven-reporting-api/3.0/maven-reporting-api-3.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/doxia/doxia-sink-api/1.0/doxia-sink-api-1.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/jacoco/org.jacoco.core/0.8.11/org.jacoco.core-0.8.11.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/ow2/asm/asm/9.6/asm-9.6.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/ow2/asm/asm-commons/9.6/asm-commons-9.6.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/ow2/asm/asm-tree/9.6/asm-tree-9.6.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/jacoco/org.jacoco.report/0.8.11/org.jacoco.report-0.8.11.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/plugins/maven-assembly-plugin/3.6.0/maven-assembly-plugin-3.6.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/shared/maven-common-artifact-filters/3.3.2/maven-common-artifact-filters-3.3.2.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/codehaus/plexus/plexus-interpolation/1.26/plexus-interpolation-1.26.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/javax/inject/javax.inject/1/javax.inject-1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/sonatype/plexus/plexus-build-api/0.0.7/plexus-build-api-0.0.7.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/codehaus/plexus/plexus-io/3.4.1/plexus-io-3.4.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/codehaus/plexus/plexus-archiver/4.7.1/plexus-archiver-4.7.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/commons/commons-compress/1.23.0/commons-compress-1.23.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/iq80/snappy/snappy/0.4/snappy-0.4.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="RUNTIME" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/tukaani/xz/1.9/xz-1.9.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="RUNTIME" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/com/github/luben/zstd-jni/1.5.5-2/zstd-jni-1.5.5-2.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library" exported=""> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/apache/maven/maven-archiver/3.6.0/maven-archiver-3.6.0.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry>  
+    <orderEntry scope="TEST" type="module-library"> 
+      <library> 
+        <SOURCES/>  
+        <CLASSES>
+          <root url="jar://C:/tools/maven_repo/org/junit/jupiter/junit-jupiter-params/5.10.1/junit-jupiter-params-5.10.1.jar!/"/>
+        </CLASSES>
+      </library> 
+    </orderEntry> 
+  </component>  
+  <component name="ModuleRootManager"/>  
+  <!-- If it's a war project:
+  <component name="WebModuleProperties">
+    <containerElement type="module" name="${dep.artifactId}">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+    </containerElement>
+    <containerElement type="library" level="module" name="${dep.artifactId}">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/${dep.systemPath.name}" />
+    </containerElement>
+    <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/${pom.build.warSourceDirectory}/WEB-INF/web.xml" version="" />
+    <webroots>
+      <root url="file://$MODULE_DIR$/${pom.build.warSourceDirectory}" relative="/" />
+    </webroots>
+  </component>
+  --> 
+</module>
