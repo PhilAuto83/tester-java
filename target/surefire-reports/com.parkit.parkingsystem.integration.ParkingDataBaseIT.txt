@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.parkit.parkingsystem.integration.ParkingDataBaseIT
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.928 s - in com.parkit.parkingsystem.integration.ParkingDataBaseIT
+<<<<<<< HEAD
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.519 s - in com.parkit.parkingsystem.integration.ParkingDataBaseIT
+=======
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.718 s - in com.parkit.parkingsystem.integration.ParkingDataBaseIT
+>>>>>>> 3503a5325d4015c40b0c0b887f70d34261b856a2
