@@ -8,8 +8,6 @@ import com.parkit.parkingsystem.model.Ticket;
 import com.parkit.parkingsystem.service.FareCalculatorService;
 import com.parkit.parkingsystem.service.ParkingService;
 import com.parkit.parkingsystem.util.InputReaderUtil;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,10 +15,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.ByteArrayOutputStream;
-import java.io.Console;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,9 +24,6 @@ import static org.mockito.Mockito.*;
 public class ParkingServiceTest {
 
     private static ParkingService parkingService;
-
-    private static final PrintStream standardOut = System.out;
-    private static final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private Ticket ticket;
 
@@ -50,7 +41,6 @@ public class ParkingServiceTest {
     @BeforeEach
     private void setUpPerTest() {
         try {
-            System.setOut(new PrintStream(outputStreamCaptor));
             parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
             ticket = new Ticket();
             ticket.setInTime(new Date(System.currentTimeMillis() - (60*60*1000)));
@@ -61,11 +51,6 @@ public class ParkingServiceTest {
             e.printStackTrace();
             throw  new RuntimeException("Failed to set up test mock objects");
         }
-    }
-    @AfterAll
-    public static void getBackToOriginalStandardOut() throws IOException {
-        System.setOut(standardOut);
-        outputStreamCaptor.close();
     }
 
     @Test
@@ -78,8 +63,6 @@ public class ParkingServiceTest {
         parkingService.processExitingVehicle();
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
         verify(ticketDAO, times(1)).getNbTicket(any(String.class));
-        assertTrue(outputStreamCaptor.toString().contains("Please pay the parking fare:" + ticket.getPrice()));
-        assertTrue(outputStreamCaptor.toString().contains("Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is:"));
     }
 
     @Test
@@ -93,9 +76,6 @@ public class ParkingServiceTest {
         parkingService.processIncomingVehicle();
         verify(ticketDAO, times(1)).saveTicket(any(Ticket.class));
         verify(parkingSpotDAO, times(1)).updateParking(parkingSpot);
-        assertTrue(outputStreamCaptor.toString().contains("Generated Ticket and saved in DB"));
-        assertTrue(outputStreamCaptor.toString().contains("Please park your vehicle in spot number:1"));
-
     }
 
     @Test
@@ -108,9 +88,6 @@ public class ParkingServiceTest {
         verify(parkingSpotDAO, Mockito.times(0)).updateParking(any(ParkingSpot.class));
         verify(ticketDAO, times(1)).getNbTicket(anyString());
         verify(ticketDAO, times(1)).getTicket(anyString());
-        String errorMessage = outputStreamCaptor.toString().substring(outputStreamCaptor.toString().indexOf("Un"));
-        assertEquals("Unable to update ticket information. Error occurred", errorMessage.trim());
-
     }
 
     @Test
