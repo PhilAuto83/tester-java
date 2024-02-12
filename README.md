@@ -10,9 +10,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-- Java 1.8
-- Maven 3.6.2
-- Mysql 8.0.17
+- Java 21
+- Maven 3.9.4
+- Mysql 8.3.0
 
 ### Installing
 
