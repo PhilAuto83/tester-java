@@ -69,6 +69,21 @@ public class ParkingDataBaseIT {
         assertEquals(1, ticketDAO.getTicket("ABCDEF").getParkingSpot().getId());
         assertEquals(0.0, ticketDAO.getTicket("ABCDEF").getPrice());
         assertNull(ticketDAO.getTicket("ABCDEF").getOutTime());
+        assertEquals(2, parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR));
+    }
+
+    @Test
+    @DisplayName("Vérification de la création du ticket moto en base de données")
+    public void testParkingABike() {
+        when(inputReaderUtil.readSelection()).thenReturn(2);
+        ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
+        parkingService.processIncomingVehicle();
+        //TODO: check that a ticket is actualy saved in DB and Parking table is updated with availability
+        assertNotNull(ticketDAO.getTicket("ABCDEF"));
+        assertEquals(4, ticketDAO.getTicket("ABCDEF").getParkingSpot().getId());
+        assertEquals(0.0, ticketDAO.getTicket("ABCDEF").getPrice());
+        assertNull(ticketDAO.getTicket("ABCDEF").getOutTime());
+        assertEquals(5, parkingSpotDAO.getNextAvailableSlot(ParkingType.BIKE));
     }
 
 
