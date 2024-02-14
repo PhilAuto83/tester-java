@@ -18,11 +18,10 @@ public class FareCalculatorService {
 
             //TODO: Some tests are failing here. Need to check if this logic is correct
             double duration = (double) (outHour - inHour) / (1000 * 60 * 60);
-            double roundHoursTo2Decimals = Math.round(duration * 100.00) / 100.00;
 
             switch (ticket.getParkingSpot().getParkingType()) {
                 case CAR: {
-                    double carPriceRoundedWithTwoDecimals = Math.round(roundHoursTo2Decimals * Fare.CAR_RATE_PER_HOUR * discountRate * 100.0) / 100.0;
+                    double carPriceRoundedWithTwoDecimals = Math.round(duration * Fare.CAR_RATE_PER_HOUR * discountRate * 100.0) / 100.0;
                     ticket.setPrice(carPriceRoundedWithTwoDecimals);
                     break;
                 }
