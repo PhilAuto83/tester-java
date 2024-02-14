@@ -39,7 +39,7 @@ public class ParkingServiceTest {
     private static TicketDAO ticketDAO;
 
     @BeforeEach
-    private void setUpPerTest() {
+    public void setUpPerTest() {
         try {
             parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
             ticket = new Ticket();
