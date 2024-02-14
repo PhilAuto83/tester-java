@@ -18,28 +18,27 @@ import com.parkit.parkingsystem.model.Ticket;
 
             //TODO: Some tests are failing here. Need to check if this logic is correct
 <span class="fc" id="L20">            double duration = (double) (outHour - inHour) / (1000 * 60 * 60);</span>
-<span class="fc" id="L21">            double roundHoursTo2Decimals = Math.round(duration * 100.00) / 100.00;</span>
 
-<span class="pc bpc" id="L23" title="1 of 3 branches missed.">            switch (ticket.getParkingSpot().getParkingType()) {</span>
+<span class="pc bpc" id="L22" title="1 of 3 branches missed.">            switch (ticket.getParkingSpot().getParkingType()) {</span>
                 case CAR: {
-<span class="fc" id="L25">                    double carPriceRoundedWithTwoDecimals = Math.round(roundHoursTo2Decimals * Fare.CAR_RATE_PER_HOUR * discountRate * 100.0) / 100.0;</span>
-<span class="fc" id="L26">                    ticket.setPrice(carPriceRoundedWithTwoDecimals);</span>
-<span class="fc" id="L27">                    break;</span>
+<span class="fc" id="L24">                    double carPriceRoundedWithTwoDecimals = Math.round(duration * Fare.CAR_RATE_PER_HOUR * discountRate * 100.0) / 100.0;</span>
+<span class="fc" id="L25">                    ticket.setPrice(carPriceRoundedWithTwoDecimals);</span>
+<span class="fc" id="L26">                    break;</span>
                 }
                 case BIKE: {
-<span class="fc" id="L30">                    double bikePriceRoundedWithTwoDecimals = Math.round(roundHoursTo2Decimals * Fare.BIKE_RATE_PER_HOUR * discountRate * 100.0) / 100.0;</span>
-<span class="fc" id="L31">                    ticket.setPrice(bikePriceRoundedWithTwoDecimals);</span>
-<span class="fc" id="L32">                    break;</span>
+<span class="fc" id="L29">                    double bikePriceRoundedWithTwoDecimals = Math.round(duration * Fare.BIKE_RATE_PER_HOUR * discountRate * 100.0) / 100.0;</span>
+<span class="fc" id="L30">                    ticket.setPrice(bikePriceRoundedWithTwoDecimals);</span>
+<span class="fc" id="L31">                    break;</span>
                 }
                 default:
-<span class="nc" id="L35">                    throw new IllegalArgumentException(&quot;Unknown Parking Type&quot;);</span>
+<span class="nc" id="L34">                    throw new IllegalArgumentException(&quot;Unknown Parking Type&quot;);</span>
             }
         }
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L37">    }</span>
 
     public void calculateFare(Ticket ticket) {
-<span class="fc" id="L41">        this.calculateFare(ticket, false);</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L40">        this.calculateFare(ticket, false);</span>
+<span class="fc" id="L41">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
