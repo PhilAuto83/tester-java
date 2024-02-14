@@ -15,11 +15,11 @@ public class ParkingService {
 
 <span class="fc" id="L16">    private static final Logger logger = LogManager.getLogger(&quot;ParkingService&quot;);</span>
 
-<span class="fc" id="L18">    private static FareCalculatorService fareCalculatorService = new FareCalculatorService();</span>
+<span class="fc" id="L18">    private static final FareCalculatorService fareCalculatorService = new FareCalculatorService();</span>
 
-    private InputReaderUtil inputReaderUtil;
-    private ParkingSpotDAO parkingSpotDAO;
-    private  TicketDAO ticketDAO;
+    private final InputReaderUtil inputReaderUtil;
+    private final ParkingSpotDAO parkingSpotDAO;
+    private  final TicketDAO ticketDAO;
 
 <span class="fc" id="L24">    public ParkingService(InputReaderUtil inputReaderUtil, ParkingSpotDAO parkingSpotDAO, TicketDAO ticketDAO){</span>
 <span class="fc" id="L25">        this.inputReaderUtil = inputReaderUtil;</span>
@@ -33,11 +33,11 @@ public class ParkingService {
 <span class="pc bpc" id="L33" title="2 of 4 branches missed.">            if(parkingSpot !=null &amp;&amp; parkingSpot.getId() &gt; 0){</span>
 <span class="fc" id="L34">                String vehicleRegNumber = getVehicleRegNumber();</span>
 <span class="fc" id="L35">                parkingSpot.setAvailable(false);</span>
-<span class="fc" id="L36">                parkingSpotDAO.updateParking(parkingSpot);//allot this parking space and mark it's availability as false</span>
+<span class="fc" id="L36">                parkingSpotDAO.updateParking(parkingSpot);//allot this parking space and mark its availability as false</span>
 
 <span class="fc" id="L38">                Date inTime = new Date();</span>
 <span class="fc" id="L39">                Ticket ticket = new Ticket();</span>
-                //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
+                //(ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
                 //ticket.setId(ticketID);
 <span class="fc" id="L42">                ticket.setParkingSpot(parkingSpot);</span>
 <span class="fc" id="L43">                ticket.setVehicleRegNumber(vehicleRegNumber);</span>
@@ -63,7 +63,7 @@ public class ParkingService {
     }
 
     public ParkingSpot getNextParkingNumberIfAvailable(){
-<span class="fc" id="L66">        int parkingNumber=0;</span>
+        int parkingNumber;
 <span class="fc" id="L67">        ParkingSpot parkingSpot = null;</span>
         try{
 <span class="fc" id="L69">            ParkingType parkingType = getVehicleType();</span>
