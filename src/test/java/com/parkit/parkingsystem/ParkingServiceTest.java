@@ -63,11 +63,13 @@ public class ParkingServiceTest {
         parkingService.processExitingVehicle();
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
         verify(ticketDAO, times(1)).getNbTicket(any(String.class));
+        assertEquals(0.95,ticket.getPrice());
+        assertNotNull(ticket.getOutTime());
     }
 
     @Test
     public void processIncomingVehicleTest() throws Exception {
-        when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("UVWXYZ");
+        when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
         when(inputReaderUtil.readSelection()).thenReturn(1);
         when(parkingSpotDAO.getNextAvailableSlot(any(ParkingType.class))).thenReturn(1);
         when(ticketDAO.getNbTicket(any(String.class))).thenReturn(0);
@@ -76,6 +78,8 @@ public class ParkingServiceTest {
         parkingService.processIncomingVehicle();
         verify(ticketDAO, times(1)).saveTicket(any(Ticket.class));
         verify(parkingSpotDAO, times(1)).updateParking(parkingSpot);
+        assertEquals(0.0, ticket.getPrice());
+
     }
 
     @Test
@@ -88,6 +92,7 @@ public class ParkingServiceTest {
         verify(parkingSpotDAO, Mockito.times(0)).updateParking(any(ParkingSpot.class));
         verify(ticketDAO, times(1)).getNbTicket(anyString());
         verify(ticketDAO, times(1)).getTicket(anyString());
+        assertFalse(parkingSpot.isAvailable());
     }
 
     @Test
