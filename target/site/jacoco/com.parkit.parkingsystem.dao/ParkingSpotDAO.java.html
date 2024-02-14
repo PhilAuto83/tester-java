@@ -25,7 +25,7 @@ import java.sql.ResultSet;
 <span class="fc" id="L25">            ps.setString(1, parkingType.toString());</span>
 <span class="fc" id="L26">            ResultSet rs = ps.executeQuery();</span>
 <span class="pc bpc" id="L27" title="1 of 2 branches missed.">            if(rs.next()){</span>
-<span class="fc" id="L28">                result = rs.getInt(1);;</span>
+<span class="fc" id="L28">                result = rs.getInt(1);</span>
             }
 <span class="fc" id="L30">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="fc" id="L31">            dataBaseConfig.closePreparedStatement(ps);</span>
