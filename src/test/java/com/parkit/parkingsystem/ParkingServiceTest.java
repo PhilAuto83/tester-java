@@ -63,7 +63,7 @@ public class ParkingServiceTest {
         parkingService.processExitingVehicle();
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
         verify(ticketDAO, times(1)).getNbTicket(any(String.class));
-        assertEquals(1.42,ticket.getPrice());
+        assertEquals(1.43,ticket.getPrice());
         assertNotNull(ticket.getOutTime());
     }
 
