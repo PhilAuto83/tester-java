@@ -20,6 +20,8 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.*;
@@ -34,6 +36,8 @@ import static org.mockito.Mockito.when;
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class ParkingDataBaseIT {
 
+
+    private static final Logger logger = LoggerFactory.getLogger((ParkingDataBaseIT.class));
     private static final DataBaseTestConfig dataBaseTestConfig = new DataBaseTestConfig();
     private static ParkingSpotDAO parkingSpotDAO;
     @Spy
@@ -64,7 +68,7 @@ public class ParkingDataBaseIT {
     public void testParkingACar() {
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
-        //TODO: check that a ticket is actualy saved in DB and Parking table is updated with availability
+        //TODO: check that a ticket is actually saved in DB and Parking table is updated with availability
         assertNotNull(ticketDAO.getTicket("ABCDEF"));
         assertEquals(1, ticketDAO.getTicket("ABCDEF").getParkingSpot().getId());
         assertEquals(0.0, ticketDAO.getTicket("ABCDEF").getPrice());
@@ -102,7 +106,7 @@ public class ParkingDataBaseIT {
             ps.setTimestamp(5, null);
             assertEquals(1, ps.executeUpdate());
         }catch (SQLException  | ClassNotFoundException ex){
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
         }
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processExitingVehicle();
@@ -127,7 +131,7 @@ public class ParkingDataBaseIT {
             ps.setTimestamp(5, null);
             assertEquals(1, ps.executeUpdate());
         }catch (SQLException  | ClassNotFoundException ex){
-            ex.printStackTrace();
+           logger.error(ex.getMessage());
         }
         when(ticketDAO.getNbTicket("ABCDEF")).thenReturn(3);
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
@@ -158,7 +162,7 @@ public class ParkingDataBaseIT {
 
     @Test
     @DisplayName("Calcul du tarif pour une heure de stationnement voiture sans remise")
-    public void testCarParkingLotExitAfterOneHour() throws SQLException, ClassNotFoundException {
+    public void testCarParkingLotExitAfterOneHour()  {
 
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,true);
         Timestamp inTime = Timestamp.from(Instant.now().minusMillis(60*60*1000));
@@ -172,7 +176,7 @@ public class ParkingDataBaseIT {
             ps.setTimestamp(5, null);
             assertEquals(1, ps.executeUpdate());
         }catch (SQLException  | ClassNotFoundException ex){
-            ex.printStackTrace();
+           logger.error(ex.getMessage());
         }
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processExitingVehicle();
@@ -181,7 +185,7 @@ public class ParkingDataBaseIT {
 
     @Test
     @DisplayName("Appliquer la remise de 5% sur une durée de stationnement de 2h pour une voiture")
-    public void testCarParkingLotExitAfterOneHourWithDiscount() throws SQLException, ClassNotFoundException {
+    public void testCarParkingLotExitAfterOneHourWithDiscount() {
 
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,true);
         Timestamp inTime = Timestamp.from(Instant.now().minusMillis(2*60*60*1000));
@@ -194,7 +198,7 @@ public class ParkingDataBaseIT {
             ps.setTimestamp(5, null);
             assertEquals(1, ps.executeUpdate());
         }catch (SQLException  | ClassNotFoundException ex){
-            ex.printStackTrace();
+           logger.error(ex.getMessage());
         }
         when(ticketDAO.getNbTicket(anyString())).thenReturn(2);
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);

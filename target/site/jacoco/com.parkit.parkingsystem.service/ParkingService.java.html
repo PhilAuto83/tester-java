@@ -102,10 +102,10 @@ public class ParkingService {
 <span class="fc" id="L102">            Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);</span>
 <span class="fc" id="L103">            Date outTime = new Date();</span>
 <span class="fc" id="L104">            ticket.setOutTime(outTime);</span>
-<span class="pc bpc" id="L105" title="1 of 2 branches missed.">            if(ticketDAO.getNbTicket(vehicleRegNumber) &gt; 1){</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            if(ticketDAO.getNbTicket(vehicleRegNumber) &gt; 1){</span>
 <span class="fc" id="L106">                fareCalculatorService.calculateFare(ticket, true);</span>
             }else{
-<span class="nc" id="L108">                fareCalculatorService.calculateFare(ticket);</span>
+<span class="fc" id="L108">                fareCalculatorService.calculateFare(ticket);</span>
             }
 <span class="fc bfc" id="L110" title="All 2 branches covered.">            if(ticketDAO.updateTicket(ticket)) {</span>
 <span class="fc" id="L111">                ParkingSpot parkingSpot = ticket.getParkingSpot();</span>
